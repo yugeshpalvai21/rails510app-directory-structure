@@ -3,6 +3,6 @@ class PagesController < ApplicationController
   end
 
   def about
-    byebug
+    #byebug
   end
 end
