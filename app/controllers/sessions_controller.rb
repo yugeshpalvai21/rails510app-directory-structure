@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to root_path, notice: 'You Already Logged In...' if user_signed_in?
   end
 
   def create
@@ -10,6 +11,11 @@ class SessionsController < ApplicationController
     else
       redirect_to login_path, notice: 'Something Went Wrong With Your Credentials...'
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, notice: 'Logged Out Successfully..'
   end
 
   private
