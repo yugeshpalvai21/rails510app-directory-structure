@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Countries creation
+
 Country.create(name: 'India', population: 130000000)
 Country.create('name' => 'Srilanka', 'population'=> 5000000)
 
@@ -18,3 +20,15 @@ country.population = 1600000
 country.save
 
 puts "Congrats!!! #{Country.count} countries created successfully..."
+
+
+# Albums Creation
+
+10.times do
+    Album.create(
+        name: FFaker::Movie.title, 
+        release_year: rand(1960...1975)
+    )
+end
+
+puts "Congrats!!! 10 albums created successfully..."
