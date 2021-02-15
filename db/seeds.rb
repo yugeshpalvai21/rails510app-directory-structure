@@ -5,3 +5,26 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+movies_list = File.open(Rails.root.join('netflix_titles.csv')).read.split("\n").map do |movie| 
+                    arr = movie.split(",")
+                    sorted_movie = {   
+                        show_id: arr[0],
+                        movie_type: arr[1],  
+                        title: arr[2], 
+                        director: arr[3], 
+                        cast: arr[4], 
+                        country: arr[5], 
+                        date_added: arr[6], 
+                        release_year: arr[7], 
+                        rating: arr[8], 
+                        duration: arr[9],
+                        listed_in: arr[10], 
+                        description: arr[11]
+                    }
+                    puts "String to Hash Conversion Completed Successfully"
+                    sorted_movie
+                end
+
+total_time = Benchmark.measure { Movie.create(movies_list) }
+puts total_time
