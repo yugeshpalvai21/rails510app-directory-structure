@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-movies_list = File.open(Rails.root.join('netflix_titles.csv')).read.split("\n").map do |movie| 
+movies_list = File.open(Rails.root.join('netflix_titles.csv')).read.split("\n").map.with_index do |movie, index| 
                     arr = movie.split(",")
                     sorted_movie = {   
                         show_id: arr[0],
@@ -22,9 +22,10 @@ movies_list = File.open(Rails.root.join('netflix_titles.csv')).read.split("\n").
                         listed_in: arr[10], 
                         description: arr[11]
                     }
-                    puts "String to Hash Conversion Completed Successfully"
+                    puts "String to Hash Conversion Completed Successfully of Index #{index}"
                     sorted_movie
                 end
 
 total_time = Benchmark.measure { Movie.create(movies_list) }
+#total_time = Benchmark.measure { movies_list.each { |movie| Movie.create(movie) } }
 puts total_time
