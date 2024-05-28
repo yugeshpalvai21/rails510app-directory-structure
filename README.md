@@ -1,24 +1,18 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#### clone and cd into app the it sets ruby 2.5.9 on local if rbenv or rvm or asdf version manager existed else create one
+  ``` rbenv install 2.5.9 && rbenv local 2.5.9```
 
-Things you may want to cover:
+#### install bundler 
+  ``` gem install bundler:1.17.3```
+  ``` bin/bundle install ```
+  > Optional: in case if `unable to install pg gem` error appears then run `sudo apt install libpq-dev` helps here.
 
-* Ruby version
+#### create database and run migrations
+ ``` bin/rails db:create && bin/rails db:schema:load && bin/rails db:migrate```
 
-* System dependencies
+#### generate controller with action and without assets and helper
+  ``` bin/rails g controller <Controller_name> <action> --no-assets --no-helper```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### run server locally
+  ``` bin/rails s```
